@@ -9,12 +9,9 @@ fi
 
 if [ "$#" -eq 1 ]; then
   phantomjs $script $1 < /dev/stdin
-elif [ "$#" -eq 2 ]; then
-  phantomjs $script $1 $2 < /dev/stdin
 else
   echo "ERROR:"
   echo "-- grapht was called with unknown arguments:"
   echo "-- grapht requires an initial argument, specifying the graph type."
-  echo "-- an optional output type may be specified in a second argument.  Valid values are: png|jpeg|pdf"
   exit 1
 fi

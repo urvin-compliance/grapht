@@ -16,11 +16,3 @@ via `STDIN`.  For example, if we want a **bar graph**:
     bin/grapht bar < ~/my-data.json
 
 The result will be a string of **svg** markup.
-
-#### Double Argument
-
-A second form of invocation allows for the specification of an output type.  Valid
-options are: **png**, **jpeg**, and **pdf**.  For example, if we want our
-**bar graph** as a **png**, rather than the standard **svg**:
-
-    bin/grapht bar png < ~/my-data.json

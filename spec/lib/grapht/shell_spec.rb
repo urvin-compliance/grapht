@@ -5,11 +5,13 @@ describe Grapht::Shell do
     describe '.exec' do
       let(:type) { Grapht::Type::BAR_HORIZONTAL }
       let(:data) do
+        <<-eot
         [
-          { name: "foo", value: 20 },
-          { name: "bar", value: 40 },
-          { name: "baz", value: 35 }
-        ].to_json
+          { "name": "foo", "value": 20 },
+          { "name": "bar", "value": 40 },
+          { "name": "baz", "value": 35 }
+        ]
+        eot
       end
 
       before do
@@ -20,7 +22,7 @@ describe Grapht::Shell do
         RubyProf.resume if RubyProf.running?
       end
 
-      it { should be_true }
+      it { true }
     end
   end
 end

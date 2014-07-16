@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/sinisterchipmunk/rspec-prof.git
+  revision: fae624203a844b62db2fcbf34e5c06656a0bb241
+  ref: fae624203a844b62db2fcbf34e5c06656a0bb241
+  specs:
+    rspec-prof (0.0.5)
+      rspec
+      ruby-prof
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -13,9 +22,6 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-mocks (3.0.2)
       rspec-support (~> 3.0.0)
-    rspec-prof (0.0.5)
-      rspec
-      ruby-prof
     rspec-support (3.0.2)
     ruby-prof (0.15.1)
 
@@ -24,4 +30,4 @@ PLATFORMS
 
 DEPENDENCIES
   rspec
-  rspec-prof
+  rspec-prof!

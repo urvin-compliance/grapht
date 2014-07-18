@@ -131,9 +131,27 @@ The result will be a string of **svg** markup:
 
 ## Ruby API
 
-To generate the same **horizontal bar graph** using the Ruby API, we can do the
-following:
+To generate the same **horizontal bar graph** generated in the CLI
+section--using the Ruby API--we can do the following:
 
     json   = "[{ \"name\": \"foo\", \"value\": 20 },{ \"name\": \"bar\", \"value\": 40 },{ \"name\": \"baz\", \"value\": 35 }]"
     type   = Grapht::Type::BAR_HORIZONTAL
     graph  = Grapht::Shell.exec type, json
+
+## Error Handling
+
+Grapht will raise an error in the following scenarios:
+
+- When any of its dependencies cannot be found.  Currently, Grapht
+depends upon the D3.js and JSON2 javascript libraries.  These dependencies
+can be found in Grapht's `vendor` directory.
+- When an unknown graph type is supplied to Grapht
+- When malformed JSON is supplied to Grapht
+- When PhantomJS raises an internal error
+
+When using Grapht's CLI, all errors are printed to `STDERR` and Grapht exits
+with an exit-code of `1`.
+
+When accessing Grapht's features through the Ruby API, all errors are presented
+as instances of `Grapht::Shell::Error`.  The error messages, in this case, are
+consistent with the errors messages raised from the CLI.

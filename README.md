@@ -9,8 +9,8 @@ API to make service-level integration simple.
 
 ### Why was Grapht built on PhantomJS?
 
-- PhantomJS allows us to leverage D3.js, a best-of-breed data visualization library
-authored by the formidable data visualization expert, Mike Bostock.  D3.js is a
+- PhantomJS allows us to leverage [D3.js](http://d3js.org/), a best-of-breed data visualization library
+authored by the formidable data visualization expert, Mike Bostock.  [D3.js](http://d3js.org/) is a
 battlefield tested library.
 - Using PhantomJS allows us to reuse existing data visualization logic, originally
 authored for our client-side application. This means we get consistent visualizations
@@ -20,7 +20,7 @@ across the various layers of our stack, and we minimize developer effort.
 
 While PhantomJS is able to run Javascript extremely fast, it has a slow startup
 time.  When measured on a 2.4GHz Intel Core i7 laptop, with 16GB of DDR3 RAM, the
-benchmarks<sup>†</sup> are as follows _(averaged over 10 runs)_:
+benchmarks<sup>†</sup> are as follows (_averaged over 10 runs_):
 
 <table style='width: 100%;'>
   <thead>
@@ -46,7 +46,7 @@ benchmarks<sup>†</sup> are as follows _(averaged over 10 runs)_:
 </table>
 
 Note that even when incrementing the amount of data-in by an order of magnitude,
-time increased minimally.  From this, we can infer a start-up time of ~1.5 seconds,
+time increases minimally (_roughly log(n)_).  From this, we can infer a start-up time of ~1.5 seconds,
 for PhantomJS, on the aforementioned hardware.
 
 <sup>†</sup> _All measurements were collected using the following command: `time -p bin/grapht bar-horizontal < data/bar_data.json > /dev/null`_
@@ -154,7 +154,7 @@ of graph definitions out of the box:
 Users may create their own graph definitions with Grapht.  To do this, we first
 have to register a location where the new graph definitions will reside.  This
 is done simply by setting the `EXT_GRAPHT_DEFINITIONS_HOME` environment variable.
-For example, if we have some definitions stored in
+For example, if we have our custom definitions stored in
 `~/Development/my_project/my_graph_defs`, we set our environment variable to this
 path:
 
@@ -192,9 +192,9 @@ Here's an example of a valid graph definition:
 
 Grapht will raise an error in the following scenarios:
 
-- When any of its dependencies cannot be found.  Currently, Grapht
+- When any of its dependencies cannot be found.  _Currently, Grapht
 depends upon the D3.js and JSON2 javascript libraries.  These dependencies
-can be found in Grapht's `vendor` directory.
+can be found in Grapht's `vendor` directory._
 - When an unknown graph type is supplied to Grapht
 - When malformed JSON is supplied to Grapht
 - When PhantomJS raises an internal error

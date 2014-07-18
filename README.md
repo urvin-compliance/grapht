@@ -138,6 +138,56 @@ section--using the Ruby API--we can do the following:
     type   = Grapht::Type::BAR_HORIZONTAL
     graph  = Grapht::Shell.exec type, json
 
+## Supported Graphs
+
+Grapht is extensible, allowing users to create new graph definitions using
+Javascript and [D3.js](http://d3js.org).  However, Grapht provides a handful
+of graph definitions out of the box:
+
+- Horizontal Bar Graph
+- Vertical Bar Graph
+- Line Graph
+- Pie Graph
+
+### User Defined Graph Definitions
+
+Users may create their own graph definitions with Grapht.  To do this, we first
+have to register a location where the new graph definitions will reside.  This
+is done simply by setting the `EXT_GRAPHT_DEFINITIONS_HOME` environment variable.
+For example, if we have some definitions stored in
+`~/Development/my_project/my_graph_defs`, we set our environment variable to this
+path:
+
+    export EXT_GRAPHT_DEFINITIONS_HOME=~/Development/my_project/my_graph_defs
+    bin/grapht my-scatterplot < ~/my-data.json
+
+In the example above, we supply the name of our new graph definition
+(`my-scatterplot`) to the Grapht CLI.  Grapht will first look in
+`EXT_GRAPHT_DEFINITIONS_HOME` for the file `my-scatterplot.js`.  If it's not
+found, it will check its own internal set of graph definitions.  If it is found,
+Grapht will load the new definition.
+
+##### Creating Your First Graph Definition
+
+All graph definitions must comply with a short set of rules:
+
+- They must be wrapped within a function that takes a single data argument.
+- They must generate one, and only one root DOM node.
+
+Here's an example of a valid graph definition:
+
+    function(data) {    // <- our wrapper fuction
+      var width  = 200,
+          height = 200;
+
+      // our single root node added to document.body
+      var svg = d3.select("body").append("svg")
+                                 .attr("width", width)
+                                 .attr("height", height);
+
+      // a bunch of D3 operations on svg...
+    }
+
 ## Error Handling
 
 Grapht will raise an error in the following scenarios:

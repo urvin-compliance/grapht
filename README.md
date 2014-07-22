@@ -26,7 +26,7 @@ benchmarks<sup>†</sup> are as follows (_averaged over 10 runs_):
   <thead>
     <tr>
       <th>Bytes-In</th>
-      <th>Average, Real Time <small style='color:gray;'>( Seconds )</small></th>
+      <th>Average, Real Time <small style='color:gray; font-weight:lighter;'>( Seconds )</small></th>
     </tr>
   </thead>
   <tbody>

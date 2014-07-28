@@ -53,6 +53,7 @@ for PhantomJS, on the aforementioned hardware.
 
 ## CLI
 
+### Overview
 Grapht provides a CLI, accessed using the `bin/grapht` command.  The basic invocation
 requires one argument specifying the desired graph type, and a JSON string provided
 via `STDIN`.  For example, if we want a **horizontal bar graph**:
@@ -128,6 +129,31 @@ The result will be a string of **svg** markup:
         <path class="domain" d="M6,0H0V200H6"></path>
       </g>
     </svg>
+
+### Usage
+
+    bin/grapht GRAPH_TYPE [options] < JSON_INPUT
+
+### Options
+
+Currently supported flags:
+
+<table style='width: 100%;'>
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Description</th>
+      <th>Allowable Values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`-f`</td>
+      <td>Specifies an output format for the generated graph.</td>
+      <td>`png|jpg|gif|pdf`</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Ruby API
 

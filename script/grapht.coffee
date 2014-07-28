@@ -3,7 +3,7 @@ system       = require('system')
 fs           = require('fs')
 thisFile     = system.args[0]
 graphType    = system.args[1]
-graphData    = fs.read('/dev/stdin')
+graphFormat  = false
 scriptPath   = fs.absolute(thisFile)
                  .replace(/[\w\s\-\.]+?\.(js|coffee)$/i, '')
 vendorPath   = "#{scriptPath}../vendor/"
@@ -49,6 +49,32 @@ fns =
       return document.body.innerHTML;
     }"
 
+  getOptions: ->
+    optionsIn   = system.args[2..]
+    optionsOut  = {}
+    slice       = 2
+
+    for i in [0...optionsIn.length] by slice
+      [key, value]    = optionsIn[i...i+slice]
+      optionsOut[key] = value
+
+    optionsOut
+
+  getFormat: ->
+    options = @getOptions()
+    options['-f'] || options['--format']
+
+  readDataIn: ->
+    try
+      if fs.size('/dev/stdin') == 0
+        fns.logError('No graph data was received!')
+      else
+        fs.read('/dev/stdin')
+        
+    catch err
+      @logError err
+
+
 # -----------------------------------------------------------------------------
 # Core Graph Generation Logic
 # -----------------------------------------------------------------------------
@@ -60,14 +86,20 @@ dependencies.forEach (dp) -> page.injectJs(dp) || Helper.logError "could not loa
 
 # load and evaluate the graph definition within the context of the JSON, supplied
 # via STDIN.
+graphData   = fns.readDataIn()
 graphDef    = fns.wrapDef fns.loadDef fns.findDef(graphType, userDefsPath, defsPath)
+graphFormat = fns.getFormat()
 parsedData  = try
                 JSON.parse(graphData)
               catch err
                 fns.logError(err)
 
-content     = page.evaluate(graphDef, parsedData)
+page.content = content = page.evaluate(graphDef, parsedData)
 
 # Write resulting content to STDOUT and exit.
-fs.write '/dev/stdout', "#{content}\n"
+if graphFormat
+  page.render '/dev/stdout', { format: graphFormat, quality: 100 }
+else
+  fs.write '/dev/stdout', "#{content}\n"
+
 phantom.exit()

@@ -7,8 +7,8 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-if [ "$#" -eq 1 ]; then
-  phantomjs $script $1 < /dev/stdin
+if [ "$#" -ge 1 ]; then
+  phantomjs $script $@ < /dev/stdin
 else
   echo "ERROR:"
   echo "-- grapht was called with unknown arguments:"

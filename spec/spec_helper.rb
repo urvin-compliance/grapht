@@ -18,7 +18,6 @@ GRAPHT_ROOT = File.expand_path('../..', __FILE__)
 $:.unshift("#{GRAPHT_ROOT}/lib")
 
 require 'bundler/setup'
-require 'rspec-prof'
 require 'grapht'
 
 RSpec.configure do |config|

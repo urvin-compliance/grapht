@@ -70,7 +70,7 @@ fns =
         fns.logError('No graph data was received!')
       else
         fs.read('/dev/stdin')
-        
+
     catch err
       @logError err
 

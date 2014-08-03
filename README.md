@@ -231,3 +231,16 @@ with an exit-code of `1`.
 When accessing Grapht's features through the Ruby API, all errors are presented
 as instances of `Grapht::Shell::Error`.  The error messages, in this case, are
 consistent with the errors messages raised from the CLI.
+
+## Rails Integration
+
+While Rails integration is not scripted by the Grapht library, it is quite
+simple to integrate.  The following steps are all that is required for integration:
+
+- Add the following to your `Gemfile`:
+    <pre>gem 'grapht', git: 'https://github.com/ibpinc/grapht.git'</pre>
+- In the Rails `app` directory, create a directory named `graph-definitions`
+- Create the file `config/initializers/grapht.rb`.  In the file add the following:
+    <pre>ENV['EXT_GRAPHT_DEFINITIONS_HOME'] =
+    Rails.root.join('app/graph-definitions')</pre>
+- Place all user-defined graph definitions in the `app/graph-definitions`

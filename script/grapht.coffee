@@ -1,15 +1,16 @@
-page         = require('webpage').create()
-system       = require('system')
-fs           = require('fs')
-thisFile     = system.args[0]
-graphType    = system.args[1]
-graphFormat  = false
-scriptPath   = fs.absolute(thisFile)
-                 .replace(/[\w\s\-\.]+?\.(js|coffee)$/i, '')
-vendorPath   = "#{scriptPath}../vendor/"
-defsPath     = "#{scriptPath}../lib/graph-definitions/"
-userDefsPath = system.env['EXT_GRAPHT_DEFINITIONS_HOME']
-dependencies = ['d3.min.js', 'json2.js']
+page          = require('webpage').create()
+system        = require('system')
+fs            = require('fs')
+thisFile      = system.args[0]
+graphType     = system.args[1]
+graphFormat   = false
+scriptPath    = fs.absolute(thisFile)
+                  .replace(/[\w\s\-\.]+?\.(js|coffee)$/i, '')
+vendorPath    = "#{scriptPath}../vendor/"
+defsPath      = "#{scriptPath}../lib/graph-definitions/"
+userDefsPath  = system.env['EXT_GRAPHT_DEFINITIONS_HOME']
+dependencies  = ['d3.min.js', 'json2.js']
+niceDirPathRX = /\/$|$/
 
 # -----------------------------------------------------------------------------
 # Helper Functions
@@ -32,7 +33,8 @@ fns =
   # of 1.
   findDef: (type, defPaths...) ->
     for dir in defPaths when dir?
-      path = "#{dir}#{type}.js"
+      dir   = dir.replace(niceDirPathRX, '/')
+      path  = "#{dir}#{type}.js"
       return path if fs.exists(path)
 
     @logError "No graph definition could be found for '#{type}'"

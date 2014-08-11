@@ -1,1 +1,1 @@
-# Intentionally Empty
+require "bundler/gem_tasks"

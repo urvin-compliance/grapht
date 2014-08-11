@@ -244,3 +244,17 @@ simple to integrate.  The following steps are all that is required for integrati
     <pre>ENV['EXT_GRAPHT_DEFINITIONS_HOME'] =
     Rails.root.join('app/graph-definitions')</pre>
 - Place all user-defined graph definitions in the `app/graph-definitions`
+
+## Contributing
+
+1. Fork it (http://github.com/ibpinc/grapht/fork)
+2. Create your feature branch `git checkout -b my-new-feature`
+3. Commit your changes `git commit -am 'Add some feature'`
+4. Push to the branch `git push origin my-new-feature`
+5. Create a new pull request
+
+## License
+
+Copyright (c) 2014 Plia Systems, Inc
+
+[MIT License](https://github.com/ibpinc/grapht/blob/master/LICENSE.txt)

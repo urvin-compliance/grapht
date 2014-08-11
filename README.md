@@ -254,7 +254,7 @@ simple to integrate.  The following steps are all that is required for integrati
 
 ## Contributing
 
-1. Fork it (http://github.com/ibpinc/grapht/fork)
+1. Fork it (http://github.com/trade-informatics/grapht/fork)
 2. Create your feature branch `git checkout -b my-new-feature`
 3. Commit your changes `git commit -am 'Add some feature'`
 4. Push to the branch `git push origin my-new-feature`

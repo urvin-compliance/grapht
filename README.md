@@ -264,4 +264,4 @@ simple to integrate.  The following steps are all that is required for integrati
 
 Copyright (c) 2014 Trade Informatics, Inc
 
-[MIT License](https://github.com/ibpinc/grapht/blob/master/LICENSE.txt)
+[MIT License](https://github.com/trade-informatics/grapht/blob/master/LICENSE.txt)

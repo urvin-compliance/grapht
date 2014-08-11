@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["tim@plia.com"]
   spec.description   = %q{Grapht is a server-side graphing library built on PhantomJS and utilizing D3.js. Grapht provides a CLI for simple Bash scripting. It also profides a light-weight Ruby API to make service-level integration simple.}
   spec.summary       = %q{Grapht is a server-side graphing library built on PhantomJS and utilizing D3.js.}
-  spec.homepage      = "https://github.com/ibpinc/grapht"
+  spec.homepage      = "https://github.com/trade-informatics/grapht"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

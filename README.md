@@ -262,6 +262,6 @@ simple to integrate.  The following steps are all that is required for integrati
 
 ## License
 
-Copyright (c) 2014 Plia Systems, Inc
+Copyright (c) 2014 Trade Informatics, Inc
 
 [MIT License](https://github.com/ibpinc/grapht/blob/master/LICENSE.txt)

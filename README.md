@@ -45,8 +45,15 @@ benchmarks<sup>†</sup> are as follows (_averaged over 10 runs_):
   </tbody>
 </table>
 
+<div style='width: 320px; margin: 0 auto;'>
+  <img src='http://i.imgur.com/NyhWdxx.jpg'/>
+  <p>
+    <small style='color:gray;'><em>time (sec.) / bytes</em></small>
+  </p>
+</div>
+
 Note that even when incrementing the amount of data-in by an order of magnitude,
-time increases minimally (_roughly log(n)_).  From this, we can infer a start-up time of ~1.5 seconds,
+time increases minimally (_roughly √n_).  From this, we can infer a start-up time of ~1.5 seconds,
 for PhantomJS, on the aforementioned hardware.
 
 <sup>†</sup> _All measurements were collected using the following command: `time -p bin/grapht bar-horizontal < data/bar_data.json > /dev/null`_
@@ -148,9 +155,9 @@ Currently supported flags:
   </thead>
   <tbody>
     <tr>
-      <td>`-f`</td>
+      <td><code>-f</code></td>
       <td>Specifies an output format for the generated graph.</td>
-      <td>`png|jpg|gif|pdf`</td>
+      <td><code>png|jpg|gif|pdf</code></td>
     </tr>
   </tbody>
 </table>

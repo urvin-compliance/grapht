@@ -11,8 +11,8 @@ module Grapht
       options = *options.select { |k,v| ALLOWED_OPTIONS.include? k }.flatten
 
       out, err, status =
-        Open3.capture3 CMD, type, *options, stdin_data: json_data, binmode: true
-        
+        Open3.capture3 CMD, type, *options, stdin_data: json_data
+
       raise Grapht::Shell::Error, err unless status.success?
       out
     end

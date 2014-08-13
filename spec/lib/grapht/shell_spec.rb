@@ -23,8 +23,30 @@ describe Grapht::Shell do
     context 'when given an unknown type' do
       let(:type) { 'some-invalid-graph-type' }
 
-      it "should raise a Grapht::Shell:Error" do
+      it "should raise a Grapht::Shell::Error" do
         expect { subject }.to raise_error(Grapht::Shell::Error, /No graph definition could be found/)
+      end
+    end
+
+    context 'when a known type is provided with a leading forward-slash' do
+      let(:type) { "/#{Grapht::Type::BAR_HORIZONTAL}" }
+      it { should match(/^<svg/) }
+    end
+
+    context 'when a naughty types are provided' do
+      [ "../buck-wild/corn-dogs",
+        "../../born-wild/chicken-skin",
+        "innocent-path/../../rootpath"
+      ].each do |path|
+        context "for path: '#{path}'" do
+          let(:type) { path }
+
+          it 'should raise a Grapht::Shell::Error' do
+            expect { subject }.to raise_error(
+              Grapht::Shell::Error,
+              /Naughty! There will be no backing out of the definition directory!/)
+          end
+        end
       end
     end
 

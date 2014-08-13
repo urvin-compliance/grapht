@@ -11,6 +11,7 @@ defsPath      = "#{scriptPath}../lib/graph-definitions/"
 userDefsPath  = system.env['EXT_GRAPHT_DEFINITIONS_HOME']
 dependencies  = ['d3.min.js', 'json2.js']
 niceDirPathRX = /\/$|$/
+naughtyPathRX = /(?:\.{1,2}\/)+/
 
 # -----------------------------------------------------------------------------
 # Helper Functions
@@ -28,10 +29,20 @@ fns =
 
     phantom.exit(1)
 
+  # Scrubs-out any leading '/' characters from the type, and raises an error
+  # if any naughtier path manipulation is detected.
+  sanitizeType: (type) ->
+    if naughtyPathRX.test(type)
+      @logError "Naughty! There will be no backing out of the definition directory!"
+
+    type.replace(/^\/+/, '')
+
   # Searchs for a valid graph definition in the supplied definition paths.  If
   # no definition is found, we log an error to STDERR and exit with an exitcode
   # of 1.
   findDef: (type, defPaths...) ->
+    type = @sanitizeType(type)
+
     for dir in defPaths when dir?
       dir   = dir.replace(niceDirPathRX, '/')
       path  = "#{dir}#{type}.js"
@@ -84,7 +95,9 @@ fns =
 # Configure the page context.
 page.libraryPath = vendorPath
 page.onError     = fns.logError
-dependencies.forEach (dp) -> page.injectJs(dp) || Helper.logError "could not load #{dp}!"
+
+dependencies.forEach (dp) ->
+  page.injectJs(dp) || fns.logError "could not load #{dp}!"
 
 # load and evaluate the graph definition within the context of the JSON, supplied
 # via STDIN.

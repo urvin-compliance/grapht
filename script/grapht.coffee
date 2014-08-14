@@ -79,10 +79,10 @@ fns =
 
   readDataIn: ->
     try
-      if fs.size('/dev/stdin') == 0
-        fns.logError('No graph data was received!')
+      if (data = fs.read('/dev/stdin')).length
+        data
       else
-        fs.read('/dev/stdin')
+        fns.logError('No graph data was received!')
 
     catch err
       @logError err

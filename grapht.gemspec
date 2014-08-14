@@ -6,8 +6,8 @@ require 'grapht/version'
 Gem::Specification.new do |spec|
   spec.name          = "grapht"
   spec.version       = Grapht::VERSION
-  spec.authors       = ["Tim Lowrimore"]
-  spec.email         = ["tim@plia.com"]
+  spec.authors       = ["Tim Lowrimore", "Josh Lewis"]
+  spec.email         = ["tim@plia.com", "josh@plia.com"]
   spec.description   = %q{Grapht is a server-side graphing library built on PhantomJS and utilizing D3.js. Grapht provides a CLI for simple Bash scripting. It also profides a light-weight Ruby API to make service-level integration simple.}
   spec.summary       = %q{Grapht is a server-side graphing library built on PhantomJS and utilizing D3.js.}
   spec.homepage      = "https://github.com/trade-informatics/grapht"

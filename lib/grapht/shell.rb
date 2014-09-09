@@ -5,7 +5,7 @@ module Grapht
     class Error < StandardError; end
 
     CMD = File.join(Grapht::ROOT, 'bin/grapht')
-    ALLOWED_OPTIONS  = %w(-f)
+    ALLOWED_OPTIONS  = %w(-f -i)
 
     def self.exec(type, json_data, options={})
       options = *options.select { |k,v| ALLOWED_OPTIONS.include? k }.flatten

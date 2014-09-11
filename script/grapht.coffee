@@ -15,18 +15,12 @@ niceDirPathRX = /\/$|$/
 naughtyPathRX = /(?:\.{1,2}\/)+/
 
 
-# page.onConsoleMessage = function(msg, lineNum, sourceId) {
-#   fs.write '/dev/stdout', "<CONSOLE> #{msg}\n"
-# };
-
 
 #------------------------------------------------------------------------------
 # Helper Functions
 #------------------------------------------------------------------------------
 
 fns =
-  content: null
-  
   # Logs the supplied message (and, optionally, the trace) to STDERR; then, 
   # exits the process with the supplied code.
   #

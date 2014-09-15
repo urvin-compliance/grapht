@@ -141,13 +141,23 @@ fns =
       page.injectJs(dp) || fns.logError("Dependency could not be loaded: #{dp}", 3)
     
     # Load and evaluate the graph definition within the context of the 
-    # arguments supplied via STDIN. Set the page content.
+    # arguments supplied via STDIN.
     graphData   = fns.readDataIn()
     graphDef    = fns.wrapDef fns.loadDef fns.findDef(graphType, userDefsPath, defsPath)
     parsedData  = try
                     JSON.parse(graphData)
                   catch err
                     fns.logError(err, 5)
+
+    # Configure page to remove extraneous whitespace that comes out
+    # of WebKit. 
+    #
+    # The viewport size eliminates a minimum height of 300px that 
+    # seems to be enforced. It does so by requiring all drawings to 
+    # exapnd the viewport to actual size.
+    page.viewportSize = { width: 1, height: 1 };
+
+    # Set the content.
     page.content = content = page.evaluate(graphDef, parsedData) 
     
     # Write resulting content to stdout.
